@@ -26,7 +26,7 @@ proc MenuHandler
     test rax, rax
     jz .MenuHandlerEnd
 
-    call SocketRaw
+    call OpenRawSocketThread
     jmp .MenuHandlerEnd
 
   .MenuHandlerEnd:
