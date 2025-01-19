@@ -1,21 +1,26 @@
-   proc SocketRaw
+proc OpenRawSocketThread
+  ; Create read thread
+  invoke  CreateThread, 0, 0, SocketRaw, 0, 0, rawSocketThreadId
+  ret
+endp
+proc SocketRaw
     sub rsp, 20h
     and rsp, -16
      
     ; Initialize Winsock
-    sub rsp, 40                             ; Allocate shadow space
+    sub rsp, 40h                             ; Allocate shadow space
     xor rcx, rcx
     mov cx, [wsaversion]                     ; Version 2.2
     lea rdx, [wsadata]                      ; Address of WSAData buffer
     call [WSAStartup]                       ; Call WSAStartup
-    add rsp, 40                             ; Clean shadow space
+    add rsp, 40h                            ; Clean shadow space
     test eax, eax                           ; Check for errors
     
     ; Create raw socket
     invoke socket, AF_INET, SOCK_RAW, IPPROTO_ICMP
     test rax, rax
     js exit_program
-    mov rbx, rax  ; Store socket handle
+    mov [rawSocketHandler], rax  ; Store socket handle
 
     ; Open file to write received data
     ; invoke CreateFile, addr filename, GENERIC_WRITE, 0, 0, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0

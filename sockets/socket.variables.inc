@@ -5,3 +5,5 @@ section '.data' data readable writeable
     protocol dd 1                           ; Protocol: IPPROTO_ICMP (1)
     errmsg db "Failed to create socket", 0  ; Error message
     successmsg db "Raw socket created!", 0  ; Success message
+    rawSocketHandler dq 0                   ; Raw socket handler
+    rawSocketThreadId dq 0

@@ -1,6 +1,6 @@
 proc MenuHandler 
   mov [rbp-10h], rcx ; Save rcx - address of console command
-  sub rsp, 20
+  sub rsp, 20h
 
   .isHelpCommand:
     mov rcx, [rbp-10h]
