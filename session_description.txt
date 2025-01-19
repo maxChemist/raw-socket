@@ -1,0 +1,57 @@
+Session Context - Console Socket Application
+
+Project Overview:
+- Created a 64-bit Windows console application in FASM (Flat Assembler)
+- Main purpose: TCP socket server with console output
+- Current port: 7123
+
+Code Structure:
+1. Main Procedure (start):
+   - Creates console window
+   - Spawns socket handling thread
+   - Shows welcome messages
+   - Maintains console window open
+
+2. Socket Handling (StartSocket procedure):
+   - Takes port number as parameter
+   - Initializes Winsock
+   - Creates TCP socket
+   - Binds to specified port
+   - Starts listening
+   - Handles cleanup on failure
+
+3. Socket Thread (socket_thread procedure):
+   - Calls StartSocket to initialize socket
+   - Accepts incoming connections
+   - Receives data from clients
+   - Displays received data in console
+
+Current Features:
+- Console window stays open
+- TCP server listens on port 7123
+- Displays incoming messages
+- Proper cleanup on exit
+- Thread-safe operation
+
+File Structure:
+- console.asm: Main application code
+- session_description.txt: This context file
+- .gitignore: Excludes *.exe files
+
+Next Steps/Potential Improvements:
+1. Add command processing for console input
+2. Implement proper socket shutdown
+3. Add support for multiple client connections
+4. Add error messages for connection failures
+5. Implement data protocol for structured messages
+
+Build Instructions:
+1. Use FASM version 1.73.32
+2. Command: fasm.exe console.asm
+3. Run: console.exe
+
+Testing:
+Can be tested using:
+- telnet localhost 7123
+- nc localhost 7123
+- Any TCP client connecting to port 7123
