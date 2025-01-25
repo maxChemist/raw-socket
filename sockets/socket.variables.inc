@@ -7,3 +7,5 @@ section '.data' data readable writeable
     successmsg db "Raw socket created!", 0  ; Success message
     rawSocketHandler dq 0                   ; Raw socket handler
     rawSocketThreadId dq 0
+    rawSocketStructureIn SOCKADDR_IN
+    rawSocketStructureInLength = $ - rawSocketStructureIn

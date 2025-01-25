@@ -1,7 +1,7 @@
 format PE64 GUI
 entry start
 
-include 'i:/proxy/fasmw17332/INCLUDE/win64a.inc'
+include 'fasmw17332/INCLUDE/win64a.inc'
 
   include 'constants.inc'
   include 'structures.inc'

@@ -22,6 +22,18 @@ proc SocketRaw
     js exit_program
     mov [rawSocketHandler], rax  ; Store socket handle
 
+    ; Bind socket to port
+    mov [rawSocketStructureIn.sin_family], AF_INET
+    mov [rawSocketStructureIn.sin_port], 7000
+    mov [rawSocketStructureIn.sin_addr], 0  
+    mov [rawSocketStructureIn.sin_zero], 0
+    
+    mov rcx, [rawSocketHandler]
+    lea rdx, [rawSocketStructureIn]
+    mov r8, rawSocketStructureInLength
+    call [bind]
+
+    call [WSAGetLastError]
     ; Open file to write received data
     ; invoke CreateFile, addr filename, GENERIC_WRITE, 0, 0, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0
     ; test rax, rax
