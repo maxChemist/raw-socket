@@ -27,7 +27,7 @@ proc SocketRaw
     mov [rawSocketStructureIn.sin_port], 7000
     mov [rawSocketStructureIn.sin_addr], 0  
     mov [rawSocketStructureIn.sin_zero], 0
-    
+
     mov rcx, [rawSocketHandler]
     lea rdx, [rawSocketStructureIn]
     mov r8, rawSocketStructureInLength
@@ -46,10 +46,21 @@ proc SocketRaw
 
 receive_data:
     ; Receive data from raw socket
-    invoke recvfrom, rbx, rdx, 1024, 0, 0, 0
+    sub rsp, 30h
+    mov rcx, [rawSocketHandler]
+    mov r8, 1024
+    xor r9, r9
+    mov qword [rsp+20h],00000000 
+    mov qword [rsp+28h],00000000 
+    call [recvfrom]
+    add rsp, 30h
+
+    ; invoke recvfrom, rbx, rdx, 1024, 0, 0, 0
     test eax, eax
     jle receive_data  ; If no data, continue receiving
 
+    nop
+    nop
     ; Write received data to file
     ; invoke WriteFile, rcx, rdx, eax, addr bytes_written, 0
     ; test eax, eax
