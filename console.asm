@@ -187,7 +187,9 @@ section '.idata' import data readable writeable
                 connect,'connect',\
                 closesocket,'closesocket',\
                 WSAGetLastError,'WSAGetLastError',\
-                setsockopt,'setsockopt'
+                setsockopt,'setsockopt',\
+                htons,'htons',\
+                htonl,'htonl'
         import  user32,\
                 MessageBoxA,'MessageBoxA'
 

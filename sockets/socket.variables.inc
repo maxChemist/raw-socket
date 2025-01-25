@@ -9,3 +9,4 @@ section '.data' data readable writeable
     rawSocketThreadId dq 0
     rawSocketStructureIn SOCKADDR_IN
     rawSocketStructureInLength = $ - rawSocketStructureIn
+    optval dd 0                             ; Option value for socket options

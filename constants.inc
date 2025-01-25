@@ -9,6 +9,8 @@
   SOCKADDR_SIZE   = 16
   SOL_SOCKET      = 0xFFFF
   SO_REUSEADDR   = 0x0004
+  IPPROTO_IP     = 0       ; IP Protocol level
+  IP_HDRINCL     = 2       ; Option to include header
   PORT_NUM       = 7123    ; Define our listening port
   
   ENABLE_ECHO_INPUT = 0x0004
