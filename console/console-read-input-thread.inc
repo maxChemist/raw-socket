@@ -3,6 +3,7 @@ proc ReadConsoleInputTread
   invoke  CreateThread, 0, 0, ReadConsoleCycle, 0, 0, thread_id
   ret
 endp
+
 proc ReadConsoleCycle 
   ;rcx - address of startConsoleListenStruct structure
   sub rsp, 50h
